@@ -21,7 +21,8 @@
     </style>
 </head>
 <body>
-
+   
+   
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -42,6 +43,10 @@
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
     </nav>
     <header>
         <p>&copy; 2017 - midandfeed</p>
