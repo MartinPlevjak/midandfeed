@@ -1,0 +1,32 @@
+﻿@model IEnumerable<midandfeed.Models.News>
+
+@{
+    ViewData["Title"] = "Novinky zo sveta League of Legends";
+}
+
+<h2  style="text-align: center">Novinky</h2>
+
+<div class="text-right">
+    <a asp-action="Create" class="btn btn-danger" style="margin:20px 0">Pridaj novinku</a>
+</div>
+<table class="table">
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NewsName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                @Convert.ToDateTime(item.CreatedAt).ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>

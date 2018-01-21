@@ -29,9 +29,18 @@ namespace midandfeed
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                // Password settings
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 5;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequiredUniqueChars = 0;
+            })
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
@@ -63,6 +72,14 @@ namespace midandfeed
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+                await next();
+            });
+
+            app.UseMvc();
         }
     }
 }

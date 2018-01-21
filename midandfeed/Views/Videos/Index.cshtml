@@ -1,0 +1,24 @@
+﻿@model IEnumerable<midandfeed.Models.Video>
+
+@{
+    ViewData["Title"] = "Inspiration";
+}
+
+<h2 style="text-align: center">Hall of Fame </h2>
+
+
+    <div class="text-right">
+    <a asp-action="Create" class="btn btn-danger" style="margin:20px 0">Pridaj video</a>
+</div>
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            @Html.DisplayFor(modelItem => item.VideoName)
+
+            <iframe width="100%" height="200" src="https://www.youtube.com/embed/@item.YouTubeVideoId" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    }
+
+</div>

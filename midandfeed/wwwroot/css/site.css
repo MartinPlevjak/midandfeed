@@ -33,3 +33,21 @@
         display: none;
     }
 }
+
+.carousel-inner > .item {
+    max-height:500px
+}
+
+.articles{
+    margin-top:50px;
+}
+
+.articles .article{
+    margin-top:20px;
+}
+.carousel-control, .carousel-inner {
+    border-radius: 20px
+}
+.pagination{
+    margin-top:40px
+}
